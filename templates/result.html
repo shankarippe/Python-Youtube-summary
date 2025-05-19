@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>YouTube Video Summary</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 30px; max-width: 800px; margin: auto;">
+    <h1>🎬 YouTube Video Summarizer</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input 
+            type="text" 
+            name="youtube_url" 
+            placeholder="Enter YouTube URL (e.g. https://youtu.be/xyz123)" 
+            required
+            style="width: 100%; padding: 10px; margin: 10px 0; font-size: 16px;"
+        />
+        <button 
+            type="submit"
+            style="width: 100%; padding: 10px; margin: 10px 0; font-size: 16px;"
+        >Summarize</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red; font-weight: bold;">{{ error }}</p>
+    {% endif %}
+
+    {% if summary %}
+        <h2>📄 Summary</h2>
+        <div style="background: #f8f8f8; padding: 15px; border-radius: 8px; white-space: pre-wrap;">
+            {{ summary }}
+        </div>
+    {% endif %}
+</body>
+</html>
